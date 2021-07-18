@@ -8,7 +8,7 @@ class button extends Component {
     constructor(){
         super()
         this.state = {
-            isVisible : false 
+            isVisible : false
         }
     }
 

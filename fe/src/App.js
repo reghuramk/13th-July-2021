@@ -18,6 +18,7 @@ function App() {
           <div className="App">
             <Button/>
           </div>
+          
           <div style = {styles}>
             <CardComponent/>
             <CardComponent/>
