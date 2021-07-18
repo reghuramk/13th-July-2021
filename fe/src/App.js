@@ -1,24 +1,32 @@
-import logo from './logo.svg';
+import { Fragment } from 'react';
 import './App.css';
+import Button from './Components/button'
+import CardComponent from './Components/card';
 
 function App() {
+
+  const styles = {
+    display: 'inline-flex',
+    marginLeft: '15px',
+    padding: '55px'
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+   
+    <Fragment>
+          <div className="App">
+            <Button/>
+          </div>
+          <div style = {styles}>
+            <CardComponent/>
+            <CardComponent/>
+            <CardComponent/>
+            <CardComponent/>
+          </div>
+        
+    
+     </Fragment>
   );
 }
 
