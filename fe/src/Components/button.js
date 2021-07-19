@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import Button from '@material-ui/core/Button';
 import axios from 'axios'
+import CardComponent from './card';
 
 
 class button extends Component {
@@ -16,31 +17,49 @@ class button extends Component {
 
         this.setState({
             isVisible : true
-        })
+        },() => {console.log(this.state.isVisible)} )
 
-
-        axios.get('https://randomuser.me/api/?results=4')
+       const emptyUser = []
+        
+       axios.get('https://randomuser.me/api/?results=4')
         .then((response) => {
-            console.log(response.data.results)
+            emptyUser.push(response.data.results)
         })
+  
+        console.log('emptyuser',emptyUser)
     }
+
+   
+
 
     render(){
 
         const heading = {
             padding : '10px'
         }
+        const styles = {
+            display: 'inline-flex',
+            marginLeft: '15px',
+            padding: '55px'
+          }
 
         return (
             <Fragment>
 
                 <div style = {heading} >
-                    <Button onClick = {() => this.randomUser()}variant="contained" color="secondary">
-                        Secondary
+                    <Button  onClick = {() => this.randomUser()} variant="contained" color="secondary">
+                        Click for user information
                     </Button>
                 </div>
+
+                {
+                    this.state.isVisible ?
+                        <div style = {styles}>
+                            <CardComponent  />
+                        </div> : ''
+                }
                
-            </Fragment>
+            </Fragment> 
                
         )
      

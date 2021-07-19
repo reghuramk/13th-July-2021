@@ -3,7 +3,7 @@ import './App.css';
 import Button from './Components/button'
 import CardComponent from './Components/card';
 
-function App() {
+function App(props) {
 
   const styles = {
     display: 'inline-flex',
@@ -17,16 +17,7 @@ function App() {
     <Fragment>
           <div className="App">
             <Button/>
-          </div>
-          
-          <div style = {styles}>
-            <CardComponent/>
-            <CardComponent/>
-            <CardComponent/>
-            <CardComponent/>
-          </div>
-        
-    
+          </div> 
      </Fragment>
   );
 }
