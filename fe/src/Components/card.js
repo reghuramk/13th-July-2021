@@ -6,8 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Modal from '@material-ui/core/Modal';
-
+import Modal from 'react-modal'
 
 
 
@@ -16,7 +15,19 @@ class CardComponent extends Component{
 
     constructor(props){
         super()
+
+        this.state = {
+            isVisible : false
+        }
         
+    }
+
+
+    modalVisible = () => {
+
+        this.setState({
+            isVisible : true
+        })
     }
 
 
@@ -36,10 +47,36 @@ class CardComponent extends Component{
         }
 
         const ModalButton = {
-            width: '10px',
-            height: '10px',
-            border: 'outset'
+            width: '114px',
+            height: '35px',
+            border: 'outset',
+            fontSize: '9px',
+            marginTop: '-2px'
         }
+
+        const customStyles = {
+            content: {
+              width : '200px',
+              height : '200px',
+              top: '50%',
+              left: '50%',
+              right: 'auto',
+              bottom: 'auto',
+              marginRight: '-50%',
+              transform: 'translate(-50%, -50%)'
+            },
+          };
+
+          const ModalInsideButton = {
+            marginTop : '165px',
+            marginLeft : '63px',  
+            width: '35px',
+            height: '35px',
+            border: 'outset',
+            fontSize: '9px',
+
+        }
+
 
         return(
            
@@ -54,10 +91,23 @@ class CardComponent extends Component{
                        <Typography >{this.props.person.name.last}</Typography>
                       
                     </CardActions>
-                    <Button style = {ModalButton}>
-                            click me
+                    <Button onClick = {() => this.modalVisible()} style = {ModalButton}>
+                            Click for more info
                     </Button>
 
+                    {
+                        this.state.isVisible ?
+                        <div >
+                            <Modal style = {customStyles} isOpen = {true}>
+                                
+                                <Button style = {ModalInsideButton} >
+                                     Close 
+                                </Button>
+                            </Modal> 
+                        </div>
+                        : ''
+                    }
+                    
                 </Card>
             
             
