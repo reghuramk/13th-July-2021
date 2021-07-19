@@ -9,7 +9,8 @@ class button extends Component {
     constructor(){
         super()
         this.state = {
-            isVisible : false
+            isVisible : false,
+            emptyUser : []
         }
     }
 
@@ -19,21 +20,16 @@ class button extends Component {
             isVisible : true
         },() => {console.log(this.state.isVisible)} )
 
-       const emptyUser = []
         
        axios.get('https://randomuser.me/api/?results=4')
         .then((response) => {
-            emptyUser.push(response.data.results)
-        })
-  
-        console.log('emptyuser',emptyUser)
+        const emptyUser = response.data.results
+            this.setState({emptyUser})
+            console.log('users',emptyUser)
+        }) 
     }
 
-   
-
-
     render(){
-
         const heading = {
             padding : '10px'
         }
@@ -55,7 +51,14 @@ class button extends Component {
                 {
                     this.state.isVisible ?
                         <div style = {styles}>
-                            <CardComponent  />
+                            {
+                                this.state.emptyUser.map((user, index) => 
+
+                                       <CardComponent key={index} person={user} />
+
+
+                                )
+                            }
                         </div> : ''
                 }
                

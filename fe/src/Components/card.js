@@ -6,10 +6,18 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Modal from '@material-ui/core/Modal';
+
 
 
 
 class CardComponent extends Component{
+
+
+    constructor(props){
+        super()
+        
+    }
 
 
     render(){
@@ -22,19 +30,34 @@ class CardComponent extends Component{
             marginRight: '10px'
         }
 
+        const typo = {
+            marginLeft : '25px',
+
+        }
+
+        const ModalButton = {
+            width: '10px',
+            height: '10px',
+            border: 'outset'
+        }
+
         return(
            
                 <Card style = {heading} >
                     <CardActionArea>
-                        <CardMedia
-                        
-                        image="/static/images/cards/contemplative-reptile.jpg"
-                        title="Contemplative Reptile"
-                        />
+                        <CardMedia>
+                            <img alt = "pic" src = {this.props.person.picture.large}></img>
+                            </CardMedia>
                     </CardActionArea>
-                    <CardActions>
-                       
+                    <CardActions style = {typo}>
+                       <Typography >{this.props.person.name.first}</Typography>
+                       <Typography >{this.props.person.name.last}</Typography>
+                      
                     </CardActions>
+                    <Button style = {ModalButton}>
+                            click me
+                    </Button>
+
                 </Card>
             
             
