@@ -23,11 +23,19 @@ class CardComponent extends Component{
     }
 
 
-    modalVisible = () => {
+    handleOpen = () => {
 
         this.setState({
             isVisible : true
         })
+    }
+
+    handleClose = () => {
+
+        this.setState ({
+            isVisible: false
+        })
+
     }
 
 
@@ -56,8 +64,8 @@ class CardComponent extends Component{
 
         const customStyles = {
             content: {
-              width : '200px',
-              height : '200px',
+              width : '220px',
+              height : '420px',
               top: '50%',
               left: '50%',
               right: 'auto',
@@ -67,14 +75,20 @@ class CardComponent extends Component{
             },
           };
 
-          const ModalInsideButton = {
-            marginTop : '165px',
+          const closeButton = {
+            marginTop : '-8px',
+            marginBottom : '-96px',
             marginLeft : '63px',  
             width: '35px',
             height: '35px',
             border: 'outset',
             fontSize: '9px',
 
+        }
+        
+        const imgStyle = {
+
+            marginLeft : '34px'
         }
 
 
@@ -91,7 +105,7 @@ class CardComponent extends Component{
                        <Typography >{this.props.person.name.last}</Typography>
                       
                     </CardActions>
-                    <Button onClick = {() => this.modalVisible()} style = {ModalButton}>
+                    <Button onClick = {() => this.handleOpen()} style = {ModalButton}>
                             Click for more info
                     </Button>
 
@@ -99,14 +113,22 @@ class CardComponent extends Component{
                         this.state.isVisible ?
                         <div >
                             <Modal style = {customStyles} isOpen = {true}>
-                                
-                                <Button style = {ModalInsideButton} >
+
+                                <img style = {imgStyle} alt = "pic" src = {this.props.person.picture.large}></img>
+                                <p>First Name : {this.props.person.name.first}</p>
+                                <p>Age : {this.props.person.dob.age}</p>
+                                <p> Email : {this.props.person.email}</p>
+                                <p>Phone : {this.props.person.phone} </p>
+
+
+                                <Button onClick = {() => this.handleClose()} style = {closeButton} >
                                      Close 
                                 </Button>
+
                             </Modal> 
                         </div>
                         : ''
-                    }
+                    } 
                     
                 </Card>
             
